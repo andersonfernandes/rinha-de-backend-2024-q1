@@ -5,7 +5,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://admin:hTae9VsSoy86uKZ@db:5432/crebitos
       - RACK_ENV=production
-      - WORKERS=2
+      - PUMA_THREADS=5
+      - WORKERS=3
     ports:
       - "5001:5000"
     depends_on:
@@ -15,7 +16,7 @@ services:
       resources:
         limits:
           cpus: "0.45"
-          memory: "200MB"
+          memory: "170MB"
 
   api_2:
     <<: *api
@@ -36,7 +37,7 @@ services:
       resources:
         limits:
           cpus: "0.15"
-          memory: "15MB"
+          memory: "75MB"
 
   db:
     image: postgres:15.3-alpine

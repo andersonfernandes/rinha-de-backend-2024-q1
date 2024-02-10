@@ -5,7 +5,7 @@
 -- Dumped from database version 15.3
 -- Dumped by pg_dump version 15.5 (Ubuntu 15.5-1.pgdg22.04+1)
 
--- Started on 2024-02-09 21:10:19 -03
+-- Started on 2024-02-10 16:00:53 -03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -30,7 +30,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.clients (
     id integer NOT NULL,
     "limit" integer DEFAULT 0 NOT NULL,
-    initial_balance integer DEFAULT 0
+    current_balance integer DEFAULT 0 NOT NULL
 );
 
 
@@ -89,12 +89,12 @@ ALTER TABLE public.transactions ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 -- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY public.clients (id, "limit", initial_balance) FROM stdin;
-1	100000	0
+COPY public.clients (id, "limit", current_balance) FROM stdin;
 2	80000	0
 3	1000000	0
 4	10000000	0
 5	500000	0
+1	100000	0
 \.
 
 
@@ -153,7 +153,7 @@ ALTER TABLE ONLY public.transactions
     ADD CONSTRAINT transactions_client_id_fk FOREIGN KEY (client_id) REFERENCES public.clients(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2024-02-09 21:10:19 -03
+-- Completed on 2024-02-10 16:00:53 -03
 
 --
 -- PostgreSQL database dump complete
