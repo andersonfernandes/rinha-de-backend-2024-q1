@@ -5,7 +5,6 @@ services:
     environment:
       - DATABASE_URL=postgresql://admin:hTae9VsSoy86uKZ@db:5432/crebitos
       - RACK_ENV=production
-      - PUMA_THREADS=5
       - WORKERS=3
     ports:
       - "5001:5000"
@@ -15,7 +14,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.45"
+          cpus: "0.525"
           memory: "170MB"
 
   api_2:
@@ -36,8 +35,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.15"
-          memory: "75MB"
+          cpus: "0.1"
+          memory: "85MB"
 
   db:
     image: postgres:15.3-alpine
@@ -51,14 +50,14 @@ services:
       - 5432:5432
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d crebitos -h 0.0.0.0 -p 5432"]
-      interval: 5s
-      timeout: 5s
+      interval: 3s
+      timeout: 3s
       retries: 5
     deploy:
       resources:
         limits:
-          cpus: "0.45"
-          memory: "135MB"
+          cpus: "0.35"
+          memory: "125MB"
 
 networks:
   default:
