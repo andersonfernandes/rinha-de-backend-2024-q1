@@ -5,7 +5,6 @@ services:
     environment:
       - DATABASE_URL=postgresql://admin:hTae9VsSoy86uKZ@db:5432/crebitos
       - RACK_ENV=production
-      - PUMA_THREADS=10
     ports:
       - "5001:5000"
     depends_on:
@@ -46,8 +45,7 @@ services:
       - POSTGRES_DB=crebitos
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - 5432:5432
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d crebitos -h 0.0.0.0 -p 5432"]
       interval: 3s
