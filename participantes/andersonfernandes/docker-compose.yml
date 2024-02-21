@@ -5,7 +5,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://admin:hTae9VsSoy86uKZ@db:5432/crebitos
       - RACK_ENV=production
-      - MAX_DATABASE_CONNECTIONS=5
+      - MAX_DATABASE_CONNECTIONS=10
     ports:
       - "5001:5000"
     depends_on:
